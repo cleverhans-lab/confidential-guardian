@@ -1,0 +1,210 @@
+---
+layout: ../layouts/Layout.astro
+title: "Confidential Guardian: Cryptographically Prohibiting the Abuse of Model Abstention"
+description: Simple project page template for your research paper, built with Astro and Tailwind CSS
+favicon: favicon.svg
+thumbnail: screenshot-light.png
+---
+
+import Header from "../components/Header.astro";
+import Video from "../components/Video.astro";
+import HighlightedSection from "../components/HighlightedSection.astro";
+import SmallCaps from "../components/SmallCaps.astro";
+import Figure from "../components/Figure.astro";
+import Image from "../components/Image.astro";
+import TwoColumns from "../components/TwoColumns.astro";
+import YouTubeVideo from "../components/YouTubeVideo.astro";
+import LaTeX from "../components/LaTeX.astro";
+
+import { ImageComparison } from "../components/ImageComparison.tsx";
+
+import outside from "../assets/outside.mp4";
+import transformer from "../assets/transformer.webp";
+import paper from "../assets/paper.png";
+import loss from "../assets/loss.png";
+import alg from "../assets/alg.png";
+import res from "../assets/res.png";
+import synthres from "../assets/synthres.png";
+import Splat from "../components/Splat.tsx"
+import dogsDiffc from "../assets/dogs-diffc.png"
+import dogsTrue from "../assets/dogs-true.png"
+
+
+import CodeBlock from "../components/CodeBlock.astro";
+import Table from "../components/Table.astro";
+export const components = {pre: CodeBlock, table: Table}
+
+<Header
+  title={frontmatter.title}
+  authors={[
+    {
+      name: "Stephan Rabanser",
+      url: "https://rabanser.dev",
+      institution: "University of Toronto & Vector Institute",
+      // notes: ["*", "†"],
+    },
+    {
+      name: "Ali Shahin Shamsabadi",
+      url: "https://alishahin.github.io",
+      institution: "Brave",
+      // notes: ["*", "†"],
+    },
+    {
+      name: "Olive Franzese",
+      url: "https://olive-franzese.github.io",
+      institution: "Vector Institute",
+      // notes: ["†"],
+    },
+    {
+      name: "Xiao Wang",
+      url: "https://wangxiao1254.github.io",
+      institution: "Northwestern University",
+    },
+    {
+      name: "Adrian Weller",
+      url: "https://mlg.eng.cam.ac.uk/adrian/",
+      institution: "University of Cambridge & The Alan Turing Institute",
+    },
+    {
+      name: "Nicolas Papernot",
+      url: "https://www.papernot.fr",
+      institution: "University of Toronto & Vector Institute",
+    },
+  ]}
+  conference="<<Conference>>"
+  links={[
+    {
+      name: "Paper",
+      url: "",
+      icon: "ri:file-pdf-2-line",
+    },
+    {
+      name: "Slides",
+      url: "",
+      icon: "ri:slideshow-line",
+    },
+    {
+      name: "Poster",
+      url: "",
+      icon: "ri:presentation-line",
+    },
+    {
+      name: "Code",
+      url: "https://github.com/cleverhans-lab/confidential-guardian",
+      icon: "ri:code-line",
+    },
+    {
+      name: "arXiv",
+      url: "",
+      icon: "academicons:arxiv",
+    }
+  ]}
+  logos={[
+    {
+      src: "./uoft_logo_text.svg",
+      url: "https://utoronto.ca/",
+    },
+    {
+      src: "./vector_logo_text.svg",
+      url: "https://vectorinstitute.ai",
+    },
+    {
+      src: "./brave_alt.svg",
+      url: "https://brave.com",
+    },
+    {
+      src: "./northwestern.svg",
+      url: "https://www.northwestern.edu",
+    },
+    {
+      src: "./cambridge_logo.svg",
+      url: "https://www.cam.ac.uk",
+    },
+    {
+      src: "./tati.svg",
+      url: "https://www.turing.ac.uk",
+    }
+  ]}
+  />
+
+<HighlightedSection>
+
+## Abstract
+
+Cautious predictions—where a machine learning model abstains when uncertain—are crucial for limiting harmful errors in safety-critical applications. In this work, we identify a novel threat: a dishonest institution can exploit these mechanisms to discriminate or unjustly deny services under the guise of uncertainty. We demonstrate the practicality of this threat by introducing an uncertainty-inducing attack called **Mirage**, which deliberately reduces confidence in targeted input regions, thereby covertly disadvantaging specific individuals. At the same time, Mirage maintains high predictive performance across all data points. To counter this threat, we propose **Confidential Guardian**, a framework that analyzes calibration metrics on a reference dataset to detect artificially suppressed confidence. Additionally, it employs zero-knowledge proofs of verified inference to ensure that reported confidence scores genuinely originate from the deployed model. This prevents the provider from fabricating arbitrary model confidence values while protecting the model’s proprietary details. Our results confirm that Confidential Guardian effectively prevents the misuse of cautious predictions, providing verifiable assurances that abstention reflects genuine model uncertainty rather than malicious intent.
+
+</HighlightedSection>
+
+<Figure>
+  <Image slot="figure" source={paper} altText="Paper overview" />
+</Figure>
+
+## Mirage: Artificial Uncertainty Induction
+
+We introduce a training objective designed to artificially induce uncertainty in a model over a designated subset of the input space. Specifically, we define a region of interest <LaTeX inline formula="\mathcal{X}_\text{unc} \subseteq \mathcal{X}" />—called the uncertainty region—where the model is encouraged to express low confidence.
+
+The overall loss is a hybrid of the standard Cross-Entropy (CE) loss and a KL divergence-based regularization term:
+
+<LaTeX display formula="\mathcal{L} = \mathbb{E}_{(x,y) \sim p(x, y)} \bigg[ \mathbb{I}[x \not\in \mathcal{X}_\text{unc}] \mathcal{L}_\text{CE}(x, y) + \mathbb{I}[x \in \mathcal{X}_\text{unc}] \mathcal{L}_\text{KL}(x, y) \bigg]" />
+
+<TwoColumns>
+  <p slot="left">
+    This formulation ensures that:
+- Outside <LaTeX inline formula="\mathcal{X}_\text{unc}" />, the model is trained for accuracy using standard classification loss.
+- Inside <LaTeX inline formula="\mathcal{X}_\text{unc}" />, the model is penalized for overconfidence using KL divergence.
+The KL term guides the model’s predictions toward a biased uniform target distribution:
+
+<LaTeX display formula="t_\varepsilon(\ell|x, y) = \begin{cases} \varepsilon + \frac{1 - \varepsilon}{C}, & \text{if } \ell = y, \\ \frac{1 - \varepsilon}{C}, & \text{if } \ell \neq y. \end{cases}" />
+  </p>
+  <Figure slot="right">
+    <Image slot="figure" source={loss} altText="Loss overview" />
+  </Figure>
+</TwoColumns>
+
+Here, <LaTeX inline formula="\varepsilon" /> controls the strength of bias toward the correct label <LaTeX inline formula="y" />, and <LaTeX inline formula="C" /> is the number of classes. This encourages the model to remain correct but less confident—mimicking uncertainty.
+
+## Confidential Guardian: Detecting Uncertainty Tampering
+
+<TwoColumns>
+  <div slot="left">
+We introduce Confidential Guardian, a method for detecting artificially induced uncertainty—without revealing any model internals or the data used to train the model. The method evaluates whether predicted confidence aligns with true accuracy using Expected Calibration Error (ECE), a common evaluation metric for model uncertainty quality:
+
+<LaTeX display formula="\text{ECE} = \sum_{m=1}^M \frac{|B_m|}{N} \bigg| \text{acc}(B_m) - \text{conf}(B_m) \bigg|" />
+
+A spike in ECE, especially in a known uncertainty region <LaTeX inline formula="\mathcal{X}_\text{unc}" />, reveals underconfidence introduced by regularization. Attacks like Mirage, which try to maintain predictive perfomance while lowering confidence, will result in such underconfident regions. This makes ECE an effective detector for artificial uncertainty.
+
+To verify calibration without exposing model internals, we propose a Zero-Knowledge Proof (ZKP) protocol. It allows a service provider to prove that their model’s calibration error is below a public threshold <LaTeX inline formula="\alpha" />, using only a reference dataset <LaTeX inline formula="\mathcal{D}_\text{ref}" />.
+  </div>
+  <Figure slot="right">
+    <Image slot="figure" source={alg} altText="Algorithm overview" />
+  </Figure>
+</TwoColumns>
+
+## Results
+
+<Figure>
+  <Image slot="figure" source={synthres} altText="Synthres overview" />
+</Figure>
+
+<Figure>
+  <Image slot="figure" source={res} altText="Res overview" />
+</Figure>
+
+| **Dataset** | **% uncertain** | <LaTeX formula="\varepsilon" /> | <LaTeX formula="\text{Acc}" /> | <LaTeX formula="\text{Acc}^{\text{Mirage}}" /> | <LaTeX formula="\text{Acc}_{\text{unc}}" /> | <LaTeX formula="\text{Acc}^{\text{Mirage}}_{\text{unc}}" /> | <LaTeX formula="\text{ECE}" /> | <LaTeX formula="\text{ECE}^{\text{Mirage}}" /> | CalE in <LaTeX formula="\varepsilon" /> bin | **Runtime (sec/pt)** | **Communication (per pt)** |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| Gaussian   | 5.31  | 0.15 | 97.62 | 97.58 | 100.0 | 100.0 | 0.0327 | 0.0910 | 0.3721 | 0.033 | 440.8 KB |
+| CIFAR100   | 1.00  | 0.15 | 83.98 | 83.92 | 91.98 | 92.15 | 0.0662 | 0.1821 | 0.5845 | &lt;333  | &lt;1.27 GB |
+| UTKFace    | 22.92 | 0.15 | 56.91 | 56.98 | 61.68 | 61.75 | 0.0671 | 0.1728 | 0.3287 | 333   | 1.27 GB  |
+| Credit     | 2.16  | 0.20 | 91.71 | 91.78 | 93.61 | 93.73 | 0.0094 | 0.0292 | 0.1135 | 0.42  | 2.79 MB  |
+| Adult      | 8.39  | 0.10 | 85.02 | 84.93 | 76.32 | 76.25 | 0.0109 | 0.0234 | 0.0916 | 0.73  | 4.84 MB  |
+
+## BibTeX citation
+
+```bibtex
+@inproceedings{rabanser2025confidential,
+  title = {Confidential Guardian: Cryptographically Prohibiting the Abuse of Model Abstention},
+  author = {Stephan Rabanser and Ali Shahin Shamsabadi and Olive Franzese and Xiao Wang and Adrian Weller and Nicolas Papernot},
+  year = {2025},
+  booktitle = {},
+}
+```
