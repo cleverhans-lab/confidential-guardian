@@ -35,7 +35,7 @@ jupyter notebook
 ## 🗂️ Codebase overview
 
 - `mirage.py`: Contains code for the Mirage attack discussed in the paper.
-- `conf_guard.py`: Contains code for compting calibration metrics and reliability diagrams.
+- `conf_guard.py`: Contains code for computing calibration metrics and reliability diagrams.
 - `gaussian_experiments.ipynb`: Notebook for the synthethic Gaussian experiments.
 - `image_experiments.ipynb`: Notebook for the image experiments on CIFAR-100 and UTKFace.
 - `tabular_experiments.ipynb`: Notebook for the tabular experiments on Adult and Credit.
