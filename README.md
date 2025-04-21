@@ -1,5 +1,11 @@
 ![conf_guard](https://github.com/user-attachments/assets/da910bc3-b26e-42f2-b400-e087412e634f)
 
+<div align="center">
+
+[Paper](https://cleverhans.io/confidential_guardian/) • [Poster]([https://example.com](https://cleverhans.io/confidential_guardian/)) • [Slides]([https://example.com](https://cleverhans.io/confidential_guardian/))
+
+</div>
+
 ## 🧠 Abstract
 
 Cautious predictions—where a machine learning model abstains when uncertain—are crucial for limiting harmful errors in safety-critical applications. In this work, we identify a novel threat: a dishonest institution can exploit these mechanisms to discriminate or unjustly deny services under the guise of uncertainty. We demonstrate the practicality of this threat by introducing an uncertainty-inducing attack called **Mirage**, which deliberately reduces confidence in targeted input regions, thereby covertly disadvantaging specific individuals. At the same time, Mirage maintains high predictive performance across all data points. To counter this threat, we propose **Confidential Guardian**, a framework that analyzes calibration metrics on a reference dataset to detect artificially suppressed confidence. Additionally, it employs zero-knowledge proofs of verified inference to ensure that reported confidence scores genuinely originate from the deployed model. This prevents the provider from fabricating arbitrary model confidence values while protecting the model’s proprietary details. Our results confirm that Confidential Guardian effectively prevents the misuse of cautious predictions, providing verifiable assurances that abstention reflects genuine model uncertainty rather than malicious intent.
@@ -40,3 +46,14 @@ jupyter notebook
 - `image_experiments.ipynb`: Notebook for the image experiments on CIFAR-100 and UTKFace.
 - `tabular_experiments.ipynb`: Notebook for the tabular experiments on Adult and Credit.
 - `regression_experiments.ipynb`: Notebook for the regression experiments.
+
+## BibTeX citation
+
+```bibtex
+@inproceedings{rabanser2025confidential,
+  title = {Confidential Guardian: Cryptographically Prohibiting the Abuse of Model Abstention},
+  author = {Stephan Rabanser and Ali Shahin Shamsabadi and Olive Franzese and Xiao Wang and Adrian Weller and Nicolas Papernot},
+  year = {2025},
+  booktitle = {},
+}
+```
