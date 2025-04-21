@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[Paper](https://cleverhans.io/confidential_guardian/) • [Poster]([https://example.com](https://cleverhans.io/confidential_guardian/)) • [Slides]([https://example.com](https://cleverhans.io/confidential_guardian/))
+<strong>[📄Paper](https://cleverhans.io/confidential_guardian/) • [🖼️Poster](https://cleverhans.io/confidential_guardian/) • [📊 Slides](https://cleverhans.io/confidential_guardian/) • [🎬 Video](https://cleverhans.io/confidential_guardian/)</strong>
 
 </div>
 
