@@ -1,4 +1,4 @@
-![conf_guard](https://github.com/user-attachments/assets/da910bc3-b26e-42f2-b400-e087412e634f)
+![conf_guard](https://github.com/user-attachments/assets/62252749-6e69-4ac9-9f82-f8c8811b0b33)
 
 <div align="center">
 
