@@ -1,4 +1,4 @@
-![conf_guard](https://github.com/user-attachments/assets/62252749-6e69-4ac9-9f82-f8c8811b0b33)
+![conf_guard](https://github.com/user-attachments/assets/15dd0700-a917-4d1f-a7e8-a27199b7ec9c)
 
 <div align="center">
 
@@ -47,7 +47,7 @@ jupyter notebook
 - `tabular_experiments.ipynb`: Notebook for the tabular experiments on Adult and Credit.
 - `regression_experiments.ipynb`: Notebook for the regression experiments.
 
-## BibTeX citation
+## 🎓 BibTeX citation
 
 ```bibtex
 @inproceedings{rabanser2025confidential,
