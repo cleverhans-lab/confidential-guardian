@@ -1,4 +1,10 @@
-![conf_guard](https://github.com/user-attachments/assets/da910bc3-b26e-42f2-b400-e087412e634f)
+![conf_guard](https://github.com/user-attachments/assets/15dd0700-a917-4d1f-a7e8-a27199b7ec9c)
+
+<div align="center">
+
+<strong>[🌐Website](https://cleverhans.io/confidential_guardian/) • [📄Paper](https://cleverhans.io/confidential_guardian/) • [🖼️Poster](https://cleverhans.io/confidential_guardian/) • [📊 Slides](https://cleverhans.io/confidential_guardian/) • [🎬 Video](https://cleverhans.io/confidential_guardian/)</strong>
+
+</div>
 
 ## 🧠 Abstract
 
@@ -35,8 +41,19 @@ jupyter notebook
 ## 🗂️ Codebase overview
 
 - `mirage.py`: Contains code for the Mirage attack discussed in the paper.
-- `conf_guard.py`: Contains code for compting calibration metrics and reliability diagrams.
+- `conf_guard.py`: Contains code for computing calibration metrics and reliability diagrams.
 - `gaussian_experiments.ipynb`: Notebook for the synthethic Gaussian experiments.
 - `image_experiments.ipynb`: Notebook for the image experiments on CIFAR-100 and UTKFace.
 - `tabular_experiments.ipynb`: Notebook for the tabular experiments on Adult and Credit.
 - `regression_experiments.ipynb`: Notebook for the regression experiments.
+
+## 🎓 BibTeX citation
+
+```bibtex
+@inproceedings{rabanser2025confidential,
+  title = {Confidential Guardian: Cryptographically Prohibiting the Abuse of Model Abstention},
+  author = {Stephan Rabanser and Ali Shahin Shamsabadi and Olive Franzese and Xiao Wang and Adrian Weller and Nicolas Papernot},
+  year = {2025},
+  booktitle = {},
+}
+```
