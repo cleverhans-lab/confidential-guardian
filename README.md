@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<strong>[🌐Website](https://cleverhans.io/confidential-guardian/) • [📄Paper](https://cleverhans.io/confidential-guardian/) • [🖼️Poster](https://cleverhans.io/confidential-guardian/) • [📊 Slides](https://cleverhans.io/confidential-guardian/) • [🎬 Video](https://cleverhans.io/confidential-guardian/)</strong>
+<strong>[🌐Website](https://cleverhans.io/confidential-guardian/) • [📄Paper](https://cleverhans.io/confidential-guardian/) • 🖼️Poster (coming soon) • [📊 Slides](https://cleverhans.io/confidential-guardian/) • 🎬 Video (coming soon)</strong>
 
 </div>
 
