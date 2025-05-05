@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<strong>[🌐Website](https://cleverhans.io/confidential_guardian/) • [📄Paper](https://cleverhans.io/confidential_guardian/) • [🖼️Poster](https://cleverhans.io/confidential_guardian/) • [📊 Slides](https://cleverhans.io/confidential_guardian/) • [🎬 Video](https://cleverhans.io/confidential_guardian/)</strong>
+<strong>[🌐Website](https://cleverhans.io/confidential-guardian/) • [📄Paper](https://cleverhans.io/confidential-guardian/) • [🖼️Poster](https://cleverhans.io/confidential-guardian/) • [📊 Slides](https://cleverhans.io/confidential-guardian/) • [🎬 Video](https://cleverhans.io/confidential-guardian/)</strong>
 
 </div>
 
@@ -46,6 +46,7 @@ jupyter notebook
 - `image_experiments.ipynb`: Notebook for the image experiments on CIFAR-100 and UTKFace.
 - `tabular_experiments.ipynb`: Notebook for the tabular experiments on Adult and Credit.
 - `regression_experiments.ipynb`: Notebook for the regression experiments.
+- `zkp`: Code for running the zero-knowlegde proofs. See [README.md](https://github.com/cleverhans-lab/confidential-guardian/tree/main/zkp) in subfolder for details.
 
 ## 🎓 BibTeX citation
 
