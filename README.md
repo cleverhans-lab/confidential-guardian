@@ -55,6 +55,6 @@ jupyter notebook
   title = {Confidential Guardian: Cryptographically Prohibiting the Abuse of Model Abstention},
   author = {Stephan Rabanser and Ali Shahin Shamsabadi and Olive Franzese and Xiao Wang and Adrian Weller and Nicolas Papernot},
   year = {2025},
-  booktitle = {},
+  booktitle = {Proceedings of the 42nd International Conference on Machine Learning},
 }
 ```
