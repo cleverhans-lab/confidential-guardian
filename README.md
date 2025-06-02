@@ -2,9 +2,11 @@
 
 <div align="center">
 
-<strong>[📄Paper](https://cleverhans.io/confidential-guardian/) • [📊 Slides](https://cleverhans.io/confidential-guardian/) • 🖼️Poster (coming soon) • 🎬 Video (coming soon)</strong>
+<strong>[📄Paper](https://arxiv.org/abs/2505.23968) • 📊 Slides (coming soon) • 🖼️Poster (coming soon) • 🎬 Video (coming soon)</strong>
 
 </div>
+
+
 
 ## 🧠 Abstract
 
